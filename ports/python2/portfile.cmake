@@ -35,6 +35,10 @@ if (VCPKG_TARGET_IS_WINDOWS)
     list(APPEND _PYTHON_PATCHES
         ${CMAKE_CURRENT_LIST_DIR}/007-fix-build-path.patch
     )
+else()
+    list(APPEND _PYTHON_PATCHES
+        ${CMAKE_CURRENT_LIST_DIR}/008-bz2d.patch
+    )
 endif()
 
 
@@ -44,8 +48,8 @@ vcpkg_download_distfile(ARCHIVE
     SHA512 a7bb62b51f48ff0b6df0b18f5b0312a523e3110f49c3237936bfe56ed0e26838c0274ff5401bda6fc21bf24337477ccac49e8026c5d651e4b4cafb5eb5086f6c
 )
 
-vcpkg_extract_source_archive_ex(
-    OUT_SOURCE_PATH SOURCE_PATH
+vcpkg_extract_source_archive(
+    SOURCE_PATH
     ARCHIVE ${ARCHIVE}
     PATCHES ${_PYTHON_PATCHES}
 )
